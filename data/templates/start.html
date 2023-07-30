@@ -1,0 +1,68 @@
+{% extends 'theme.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="row my-4">
+    <div class="col-12 col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <div class="form-group  w-50">
+                        <label for="usr">Enter Invoice No:</label>
+                        <input type="text" class="form-control" id="usr" name="invoiceno" placeholder="Invoice No">
+                    </div>
+                    <div class="form-group  w-50">
+                        <button type="submit" class="btn btn-success mt-2">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-md-12 my-3">
+        <div class="card">
+            <h5 class="card-header">Student Details</h5>
+            <div class="card-body">
+                <h5 class="card-title">{{student.name}}</h5>
+                <p class="card-text">{{student.phone1}} | {{student.phone2}}</p>
+                <p class="card-text">Place : {{student.place}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-md-6 my-3">
+        <div class="card">
+            <h5 class="card-header">Course Details</h5>
+            <div class="card-body">
+                <h5 class="card-title">{{student.course}}</h5>
+                <p class="card-text">Invoice No: {{student.invoiceno}}</p>
+                <p class="card-text">Batch Time : {{student.batchtime}}</p>
+                <p class="card-text">Batch Starting Date : {{student.bsd}}</p>
+                <p class="card-text">Batch Ending Date : {{student.bed}}</p>
+                <p class="card-text">Status : {{student.status}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-md-6 my-3">
+        <div class="card">
+            <h5 class="card-header">Attendence Details</h5>
+            <div class="card-body">
+                <h5 class="card-title">$2.4k</h5>
+                <p class="card-text">Feb 1 - Apr 1, United States</p>
+                <p class="card-text text-success">4.6% increase since last month</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-md-12 my-3">
+        <div class="card">
+            <h5 class="card-header">Class Deatails</h5>
+            <div class="card-body">
+                <h5 class="card-title">43</h5>
+                <p class="card-text">Feb 1 - Apr 1, United States</p>
+                <p class="card-text text-danger">2.6% decrease since last month</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
