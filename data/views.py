@@ -1,18 +1,18 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib import messages
 from .forms import DataForm
 from .models import Fees, Student
 
 def index(request):
-    form=DataForm()
     if request.method=='POST':
         form=DataForm(request.POST)
         if form.is_valid():
             form.save()
             messages.success(request, 'Data saved submitted successfully.')
+    form=DataForm()
     context = {
         "form":form
-    }
+        }
     return render(request,"index.html",context)
 def fees(request):
     if request.method=='POST':
