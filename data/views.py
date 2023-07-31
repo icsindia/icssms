@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from .forms import DataForm
-from .models import Fees, Student
+from .models import Fees, Student, Data
 
 def index(request):
     if request.method=='POST':
@@ -26,6 +26,11 @@ def fees(request):
 def start(request):
     if request.method == 'POST':
         invoiceno=request.POST['invoiceno']
-        student=Student.objects.get(invoiceno=invoiceno)
-        return render(request, "start.html",{'student':student})
+        student=Student.objects.get(invoiceno=invoiceno.upper())
+        data=Data.objects.filter(invoiceno=invoiceno.upper())
+        context = {
+            'student':student,
+            'data':data
+        }
+        return render(request, "start.html",context)
     return render(request, "start.html")
