@@ -47,9 +47,9 @@
         <div class="card">
             <h5 class="card-header">Attendence Details</h5>
             <div class="card-body">
-                <h5 class="card-title">$2.4k</h5>
+                <!-- <h5 class="card-title">$2.4k</h5>
                 <p class="card-text">Feb 1 - Apr 1, United States</p>
-                <p class="card-text text-success">4.6% increase since last month</p>
+                <p class="card-text text-success">4.6% increase since last month</p> -->
             </div>
         </div>
     </div>
@@ -57,9 +57,30 @@
         <div class="card">
             <h5 class="card-header">Class Deatails</h5>
             <div class="card-body">
-                <h5 class="card-title">43</h5>
-                <p class="card-text">Feb 1 - Apr 1, United States</p>
-                <p class="card-text text-danger">2.6% decrease since last month</p>
+                
+    <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Invoice No</th>
+            <th scope="col">Date</th>
+            <th scope="col">Subject</th>
+            <th scope="col" class="w-50">Content</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for a in data %}
+          <tr>
+            <th scope="row">{{ forloop.counter }}</th>
+            <td>{{a.invoiceno}}</td>
+            <td>{{a.date}}</td>
+            <td>{{a.subject}}</td>
+            <td>{{a.report}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+  
             </div>
         </div>
     </div>
