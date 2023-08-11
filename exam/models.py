@@ -13,7 +13,7 @@ class ExamStudent(models.Model):
     name=models.CharField(max_length=50)
     phone=models.CharField(max_length=15)
     course=models.CharField(max_length=20)
-    examid=models.ForeignKey(Exam,on_delete=models.CASCADE)
+    examid=models.CharField(max_length=20)
     examlink=models.CharField(max_length=100)
     dateofexam=models.DateField()
     examtime=models.TimeField()
