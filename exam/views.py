@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from data.models import Student
+from data.models import Student, Fees
 from exam.models import ExamStudent, Exam
 def exam(request):
     return render(request,"exam.html")

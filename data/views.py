@@ -34,3 +34,21 @@ def start(request):
         }
         return render(request, "start.html",context)
     return render(request, "start.html")
+def addfees(request):
+    if request.method=='POST':
+        invoiceno=request.POST['invoiceno']
+        name=request.POST['name']
+        batchtime=request.POST['batchtime']
+        course=request.POST['course']
+        fees=request.POST['fees']
+        duedate=request.POST['duedate']
+        ex=Fees.objects.create(invoiceno=invoiceno,name=name,batchtime=batchtime,course=course,fees=fees, duedate=duedate)
+    return render(request, "addfees.html")
+def getfees(request):
+    if request.method=='GET':
+        invoiceno=request.GET['invoiceno']
+        data=Student.objects.filter(invoiceno=invoiceno)
+        context = {
+            "data":data,
+        }
+    return render(request,"getfees.html",context)
