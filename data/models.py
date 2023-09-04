@@ -43,6 +43,9 @@ class Data(models.Model):
         return self.invoiceno
 class Fees(models.Model):
     invoiceno=models.CharField(max_length=5)
+    name=models.CharField(max_length=40, null=True)
+    batchtime=models.CharField(max_length=20, null=True)
+    course=models.CharField(max_length=20, null=True)
     fees=models.IntegerField()
     duedate=models.DateField()
     paiddate=models.DateField(blank=True, null=True)
