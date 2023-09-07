@@ -44,11 +44,11 @@ def addfees(request):
         duedate=request.POST['duedate']
         ex=Fees.objects.create(invoiceno=invoiceno,name=name,batchtime=batchtime,course=course,fees=fees, duedate=duedate)
     return render(request, "addfees.html")
-def getfees(request):
+def getstudent(request):
     if request.method=='GET':
         invoiceno=request.GET['invoiceno']
         data=Student.objects.filter(invoiceno=invoiceno)
         context = {
             "data":data,
         }
-    return render(request,"getfees.html",context)
+    return render(request,"getstudent.html",context)
