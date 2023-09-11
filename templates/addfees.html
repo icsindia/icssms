@@ -41,7 +41,7 @@
       xhttp.onload = function() {
         document.getElementById("txtHint").innerHTML = this.responseText;
       }
-      xhttp.open("GET", "/getfees?invoiceno="+str);
+      xhttp.open("GET", "/getstudent?invoiceno="+str);
       xhttp.send();
     }
     

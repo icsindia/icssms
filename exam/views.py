@@ -1,6 +1,4 @@
 from django.shortcuts import render
-from django.http import HttpResponse
-from data.models import Student, Fees
 from exam.models import ExamStudent, Exam
 def exam(request):
     return render(request,"exam.html")
@@ -20,16 +18,6 @@ def addstudent(request):
         examtime=request.POST['examtime']
         ex=ExamStudent.objects.create(invoiceno=invoiceno,name=name,phone=phone,course=course,examid=examid, examlink=examlink,dateofexam=dateofexam,examtime=examtime)
     return render(request,"addstudent.html", context)
-def getexam(request):
-    if request.method=='GET':
-        invoiceno=request.GET['invoiceno']
-        student=Student.objects.filter(invoiceno=invoiceno)
-        exam=ExamStudent.objects.filter(invoiceno=invoiceno)
-        context={
-            "student":student,
-            "exam":exam
-        }
-        return render(request,"getexam.html",context)
 def getexamid(request):
     if request.method=='GET':
         examid=request.GET['examid']

@@ -4,86 +4,97 @@
 {% block content %}
 
 <div class="row my-4">
-    <div class="col-12 col-md-12">
+    <div class="col-12 col-md-4">
         <div class="card">
             <div class="card-body">
                 <form action="" method="post">
                     {% csrf_token %}
-                    <div class="form-group  w-50">
+                    <div class="form-group">
                         <label for="usr">Enter Invoice No:</label>
-                        <input type="text" class="form-control" id="usr" name="invoiceno" placeholder="Invoice No">
-                    </div>
-                    <div class="form-group  w-50">
-                        <button type="submit" class="btn btn-success mt-2">Submit</button>
+                        <input type="text" class="form-control" id="usr" name="invoiceno" placeholder="Invoice No" oninput="showCustomer(this.value)">
                     </div>
                 </form>
             </div>
         </div>
     </div>
-    <div class="col-12 col-md-12 my-3">
+    <div class="col-12 col-md-4">
         <div class="card">
-            <h5 class="card-header">Student Details</h5>
             <div class="card-body">
-                <h5 class="card-title">{{student.name}}</h5>
-                <p class="card-text">{{student.phone1}} | {{student.phone2}}</p>
-                <p class="card-text">Place : {{student.place}}</p>
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="usr">Select Batch:</label>
+                        <select name="customers" class="form-control" name="data1" onchange="showCustomer1(this.value)">
+                        <option value="">Select a Batch</option>
+                        <option value="09">09.00 to 10.30</option>
+                        <option value="1030">10.30 to 12.00</option>
+                        <option value="12">12.00 to 01.30</option>
+                        <option value="02">02.00 to 03.30</option>
+                        <option value="330">03.30 to 05.00</option>
+                        <option value="saturday">Saturday</option>
+                        </select>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
-    <div class="col-12 col-md-6 my-3">
+    <div class="col-12 col-md-4">
         <div class="card">
-            <h5 class="card-header">Course Details</h5>
             <div class="card-body">
-                <h5 class="card-title">{{student.course}}</h5>
-                <p class="card-text">Invoice No: {{student.invoiceno}}</p>
-                <p class="card-text">Batch Time : {{student.batchtime}}</p>
-                <p class="card-text">Batch Starting Date : {{student.bsd}}</p>
-                <p class="card-text">Batch Ending Date : {{student.bed}}</p>
-                <p class="card-text">Status : {{student.status}}</p>
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="usr">Course:</label>
+                        <select class="form-control" id="usr" name="data2" onchange="showCustomer2(this.value)">
+                            <option value="">Select Course</option>
+                            {% for a in course %}
+                            <option value="{{a.course}}">{{a.course}}</option>
+                            {% endfor %}
+                            </select>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
-    <div class="col-12 col-md-6 my-3">
-        <div class="card">
-            <h5 class="card-header">Attendence Details</h5>
-            <div class="card-body">
-                <!-- <h5 class="card-title">$2.4k</h5>
-                <p class="card-text">Feb 1 - Apr 1, United States</p>
-                <p class="card-text text-success">4.6% increase since last month</p> -->
-            </div>
-        </div>
-    </div>
-    <div class="col-12 col-md-12 my-3">
-        <div class="card">
-            <h5 class="card-header">Class Deatails</h5>
-            <div class="card-body">
-                
-    <table class="table table-hover">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Invoice No</th>
-            <th scope="col">Date</th>
-            <th scope="col">Subject</th>
-            <th scope="col" class="w-50">Content</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for a in data %}
-          <tr>
-            <th scope="row">{{ forloop.counter }}</th>
-            <td>{{a.invoiceno}}</td>
-            <td>{{a.date}}</td>
-            <td>{{a.subject}}</td>
-            <td>{{a.report}}</td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-  
-            </div>
-        </div>
-    </div>
+    <div id="txtHint"></div>
 </div>
+<script>
+    function showCustomer(str) {
+      if (str == "") {
+        document.getElementById("txtHint").innerHTML = "";
+        return;
+      }
+      const xhttp = new XMLHttpRequest();
+      xhttp.onload = function() {
+        document.getElementById("txtHint").innerHTML = this.responseText;
+      }
+      xhttp.open("GET", "/getstart?invoiceno="+str);
+      xhttp.send();
+    }
+    function showCustomer1(str) {
+      if (str == "") {
+        document.getElementById("txtHint").innerHTML = "";
+        return;
+      }
+      const xhttp = new XMLHttpRequest();
+      xhttp.onload = function() {
+        document.getElementById("txtHint").innerHTML = this.responseText;
+      }
+      xhttp.open("GET", "/getbatch?data1="+str);
+      xhttp.send();
+    }
+    function showCustomer2(str) {
+      if (str == "") {
+        document.getElementById("txtHint").innerHTML = "";
+        return;
+      }
+      const xhttp = new XMLHttpRequest();
+      xhttp.onload = function() {
+        document.getElementById("txtHint").innerHTML = this.responseText;
+      }
+      xhttp.open("GET", "/getbatch?data2="+str);
+      xhttp.send();
+    }
+    </script>
 
 {% endblock %}

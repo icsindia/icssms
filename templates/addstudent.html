@@ -53,7 +53,7 @@
       xhttp.onload = function() {
         document.getElementById("txtHint").innerHTML = this.responseText;
       }
-      xhttp.open("GET", "getexam?invoiceno="+str);
+      xhttp.open("GET", "getstudent?invoiceno="+str);
       xhttp.send();
     }
     function showCustomer1(str) {
